@@ -1,73 +1,79 @@
-# React + TypeScript + Vite
+# **Inovamar: Escritório de Projetos**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Inovamar** is a platform designed to centralize and organize information about **public funding calls** in the coastal region of Paraná, Brazil.
 
-Currently, two official plugins are available:
+The system aggregates publicly available data and provides guidance to help individuals and organizations prepare and submit project proposals.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The initiative is sponsored by [`Associação MarBrasil`](https://marbrasil.org/) and executed by [`Incubadora de Negócios de Impacto (IFPR Campus Paranaguá)`](https://incubadoraifpr.com.br).
 
-## React Compiler
+## **Stack**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js 20+
+- React 19
+- Vite 7
+- TypeScript 5
+- ESLint 9 with `@antfu/eslint-config`
+- Husky + lint-staged (pre-commit quality)
+- GitHub Actions (CI)
 
-## Expanding the ESLint configuration
+## **Development Setup**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Requirements
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+- Node.js 20+
+- npm
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Install dependencies
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Start development server
 
-```js
-import reactDom from "eslint-plugin-react-dom";
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+npm run dev
 ```
+
+The application will be available at:
+
+```bash
+https://localhost:5173
+```
+
+## **Code Quality**
+
+This project enforces code quality using:
+
+- ESLint with `@antfu/eslint-config`
+- Husky pre-commit hooks
+- Lint-staged
+
+Before each commit, ESLint runs automatically on staged files.
+If lint errors are found, the commit will be blocked until they are fixed.
+
+To run lint manually:
+
+```bash
+npm run lint
+```
+
+To automatically fix issues:
+
+```bash
+npm run lint:fix
+```
+
+## **Contributing**
+
+1. Create a branch from `develop`.
+2. Implement your changes.
+3. CI workflow checks (lint) must pass prior to merge approval.
+4. Open a Pull Request to `develop`.
+
+## **Lead Developer**
+
+[![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/mitugui)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=logmein&logoColor=white)](https://www.linkedin.com/in/cristian-mitugui/)
+\
+**`Cristian Oliveira Mitugui`**
