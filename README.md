@@ -68,7 +68,7 @@ npm run lint:fix
 
 1. Create a branch from `develop`.
 2. Implement your changes.
-3. CI workflow checks (lint) must pass prior to merge approval.
+3. CI workflow checks (lint and build) must pass prior to merge approval.
 4. Open a Pull Request to `develop`.
 
 ## **Lead Developer**
