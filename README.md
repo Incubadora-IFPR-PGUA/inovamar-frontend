@@ -41,6 +41,20 @@ The application will be available at:
 https://localhost:5173
 ```
 
+## **Production Build (Docker)**
+
+Build image
+
+```
+docker build -t inovamar-frontend:<version> .
+```
+
+Run container
+
+```
+docker run -p <host_port>:80 inovamar-frontend:<version>
+```
+
 ## **Code Quality**
 
 This project enforces code quality using:
