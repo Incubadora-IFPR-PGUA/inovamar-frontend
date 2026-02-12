@@ -1,4 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Rubik");
 @import "tailwindcss";
+
+* {
+  font-family: "Rubik";
+}
 
 @theme {
   --color-brand-500: #40bfae;
