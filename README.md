@@ -12,9 +12,11 @@ The initiative is sponsored by [`Associação MarBrasil`](https://marbrasil.org/
 - React 19
 - Vite 7
 - TypeScript 5
+- Tailwind 4
 - ESLint 9 with `@antfu/eslint-config`
 - Husky + lint-staged (pre-commit quality)
 - GitHub Actions (CI)
+- Docker
 
 ## **Development Setup**
 
