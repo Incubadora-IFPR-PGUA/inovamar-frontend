@@ -13,12 +13,7 @@ const logos: Logo[] = [
   { src: iceLogo, alt: "ICE - Instituto de Cidadania Empresarial" },
 ];
 
-type CompanyImageProps = {
-  src: string;
-  alt: string;
-};
-
-function CompanyImage({ src, alt }: CompanyImageProps) {
+function CompanyImage({ src, alt }: Logo) {
   return (
     <img
       src={src}
