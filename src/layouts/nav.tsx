@@ -1,4 +1,4 @@
-import iceLogo from "../assets/img/logo_ice_white.png";
+import iceLogo from "../assets/img/logos/ice_white.png";
 
 function Nav() {
   return (
