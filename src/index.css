@@ -4,6 +4,7 @@
 @layer base {
   body {
     font-family: "Roboto", sans-serif;
+    background-color: var(--color-brand-500);
   }
 }
 
