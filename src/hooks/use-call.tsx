@@ -1,27 +1,24 @@
 import { useEffect, useState } from "react";
 
-import type { Call } from "../types/call";
+import type { ApiCallError, Call } from "../types/call";
 
-import { fetchCallById, NotFoundError } from "../services/calls-service";
+import { ApiError, fetchCallById, NotFoundError } from "../services/calls-service";
 
 type UseCallReturn = {
   call: Call | null;
   isLoading: boolean;
-  isNotFound: boolean;
-  error: string | null;
+  error: ApiCallError | null;
 };
 
 export function useCall(id: number): UseCallReturn {
   const [call, setCall] = useState<Call | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isNotFound, setIsNotFound] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ApiCallError | null>(null);
 
   useEffect(() => {
     const loadCall = async () => {
       setIsLoading(true);
       setError(null);
-      setIsNotFound(false);
 
       try {
         const data = await fetchCallById(id);
@@ -29,11 +26,13 @@ export function useCall(id: number): UseCallReturn {
       }
       catch (err) {
         if (err instanceof NotFoundError) {
-          setIsNotFound(true);
+          setError({ status: err.status, message: err.message });
+        }
+        else if (err instanceof ApiError) {
+          setError({ status: err.status, message: err.message });
         }
         else {
-          setError("Ocorreu um erro ao carregar o edital.");
-          console.error(err);
+          setError({ status: 500, message: "Erro inesperado." });
         }
       }
       finally {
@@ -44,5 +43,5 @@ export function useCall(id: number): UseCallReturn {
     loadCall();
   }, [id]);
 
-  return { call, isLoading, isNotFound, error };
+  return { call, isLoading, error };
 }
