@@ -17,3 +17,8 @@ export type PaginatedCallsResponse = {
   data: Call[];
   total: number;
 };
+
+export type ApiCallError = {
+  status: number;
+  message: string;
+};
