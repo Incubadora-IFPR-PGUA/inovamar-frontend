@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { ScrollRestoration, useParams } from "react-router-dom";
 
 import CallContent from "../components/call";
 import Error from "../components/call/error";
@@ -9,14 +9,14 @@ function CallPage() {
   const { id } = useParams();
   const { call, isLoading, error } = useCall(Number(id));
 
-  if (isLoading)
-    return <Loading />;
-
-  if (error)
-    return <Error status={error.status} message={error.message} />;
-
-  if (call)
-    return <CallContent call={call} />;
+  return (
+    <>
+      <ScrollRestoration />
+      {isLoading && <Loading />}
+      {error && <Error status={error.status} message={error.message} />}
+      {call && <CallContent call={call} />}
+    </>
+  );
 }
 
 export default CallPage;
