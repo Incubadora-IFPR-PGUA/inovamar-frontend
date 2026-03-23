@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 import type { ApiCallError, Call } from "../types/call";
 
@@ -11,37 +11,27 @@ type UseCallReturn = {
 };
 
 export function useCall(id: number): UseCallReturn {
-  const [call, setCall] = useState<Call | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<ApiCallError | null>(null);
-
-  useEffect(() => {
-    const loadCall = async () => {
-      setIsLoading(true);
-      setError(null);
-
+  const { data, isLoading, error } = useQuery<Call, ApiCallError>({
+    queryKey: ["call", id],
+    queryFn: async () => {
       try {
-        const data = await fetchCallById(id);
-        setCall(data);
+        return await fetchCallById(id);
       }
       catch (err) {
         if (err instanceof NotFoundError) {
-          setError({ status: err.status, message: err.message });
+          throw new NotFoundError();
         }
-        else if (err instanceof ApiError) {
-          setError({ status: err.status, message: err.message });
+        if (err instanceof ApiError) {
+          throw new ApiError(err.status);
         }
-        else {
-          setError({ status: 500, message: "Erro inesperado." });
-        }
+        throw new ApiError(500);
       }
-      finally {
-        setIsLoading(false);
-      }
-    };
+    },
+  });
 
-    loadCall();
-  }, [id]);
-
-  return { call, isLoading, error };
+  return {
+    call: data ?? null,
+    isLoading,
+    error: error ?? null,
+  };
 }
