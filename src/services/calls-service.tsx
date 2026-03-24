@@ -1,4 +1,4 @@
-import type { Call } from "../types/call";
+import type { Call, PaginatedCallsResponse } from "../types/call";
 
 export class NotFoundError extends Error {
   status: number;
@@ -18,8 +18,8 @@ export class ApiError extends Error {
   }
 }
 
-export async function fetchCallById(id: number): Promise<Call> {
-  const url = new URL(`/api/calls/${id}`, window.location.origin);
+async function apiFetch(path: string): Promise<Response> {
+  const url = new URL(path, window.location.origin);
 
   let response: Response;
 
@@ -30,10 +30,28 @@ export async function fetchCallById(id: number): Promise<Call> {
     throw new ApiError(503);
   }
 
-  if (response.status === 404)
-    throw new NotFoundError();
   if (!response.ok)
     throw new ApiError(response.status);
+
+  return response;
+}
+
+export async function fetchCallById(id: number): Promise<Call> {
+  const response = await apiFetch(`/api/calls/${id}`).catch((err: ApiError) => {
+    if (err.status === 404)
+      throw new NotFoundError();
+    throw err;
+  });
+
+  return response.json();
+}
+
+export async function fetchAllCalls(page: number, perPage: number): Promise<PaginatedCallsResponse> {
+  const response = await apiFetch(`/api/calls?page=${page}&per_page=${perPage}`).catch((err: ApiError) => {
+    if (err.status === 404)
+      throw new NotFoundError();
+    throw err;
+  });
 
   return response.json();
 }
