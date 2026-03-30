@@ -7,7 +7,7 @@ function BackButton() {
 
   return (
     <button
-      className="flex items-center gap-2 text-brand-700 hover:text-brand-500 transition-colors w-fit"
+      className="flex items-center gap-2 text-brand-700 hover:text-brand-500 transition-colors w-fit cursor-pointer"
       onClick={() => {
         if (location.key !== "default") {
           navigate(-1);
