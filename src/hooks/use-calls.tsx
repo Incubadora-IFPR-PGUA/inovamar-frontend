@@ -17,7 +17,7 @@ type UseCallsReturn = {
 
 export function useCalls(): UseCallsReturn {
   const [searchParams] = useSearchParams();
-  const page = Number(searchParams.get("page") ?? 1);
+  const page = Number(searchParams.get("pagina") ?? 1);
 
   const { data, isLoading, error } = useQuery<{ data: Call[]; total: number }, ApiCallError>({
     queryKey: ["calls", page],
