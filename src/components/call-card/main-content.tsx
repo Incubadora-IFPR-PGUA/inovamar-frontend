@@ -57,7 +57,7 @@ function MainContent({ id, description, inscription, source }: Props) {
             cursor-pointer
             md:row-start-3"
             onClick={() => {
-              navigate(`/call/${id}`);
+              navigate(`/chamada/${id}`);
             }}
           >
             Detalhes

@@ -1,6 +1,9 @@
+import { useLocation } from "react-router-dom";
+
 import CallCard from "../components/call-card";
 import Paginator from "../components/ui/paginator";
 import { useCalls } from "../hooks/use-calls";
+import useScrollToTop from "../hooks/use-scroll-to-top";
 
 const PER_PAGE = 10;
 
@@ -22,6 +25,9 @@ function Calls() {
 }
 
 function Home() {
+  const location = useLocation();
+  useScrollToTop(location.state?.scrollTrigger);
+
   return (
     <Calls />
   );

@@ -14,7 +14,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/call/:id",
+        path: "/chamada/:id",
         element: <CallPage />,
       },
     ],

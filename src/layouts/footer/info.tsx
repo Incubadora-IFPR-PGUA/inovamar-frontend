@@ -1,10 +1,10 @@
-import inovamarLogo from "../../assets/img/logos/inovamar-logo.png";
+import inovamarLogo from "../../assets/img/logos/inovamar-white.png";
 import ContactLinks from "./contact-links";
 import SocialIconLinks from "./social-icon-links";
 
 function Info() {
   return (
-    <section className="bg-brand-500 text-white px-6 pt-10 flex flex-col gap-10">
+    <section className="bg-brand-500 text-white px-8 pt-10 flex flex-col gap-10 md:px-15 lg:px-25">
       <div className="flex items-center justify-between">
         <img src={inovamarLogo} alt="Logo do Inovamar" className="h-30 w-auto object-contain" />
         <SocialIconLinks />
