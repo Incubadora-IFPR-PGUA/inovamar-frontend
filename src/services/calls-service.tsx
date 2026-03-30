@@ -55,3 +55,17 @@ export async function fetchAllCalls(page: number, perPage: number): Promise<Pagi
 
   return response.json();
 }
+
+export async function searchCalls(query: string, page: number, perPage: number): Promise<PaginatedCallsResponse> {
+  const params = new URLSearchParams({
+    q: query,
+    page: String(page),
+    per_page: String(perPage),
+  });
+
+  const response = await apiFetch(`/api/calls/search?${params}`).catch((err: ApiError) => {
+    throw err;
+  });
+
+  return response.json();
+}
