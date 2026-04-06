@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
 
+import type { Organization } from "../../types/call";
+
 type Props = {
   id: number;
   description: string;
   inscription: string;
-  source: string;
+  organization: Organization;
 };
 
-function MainContent({ id, description, inscription, source }: Props) {
+function MainContent({ id, description, inscription, organization }: Props) {
   const navigate = useNavigate();
 
   return (
@@ -42,8 +44,11 @@ function MainContent({ id, description, inscription, source }: Props) {
               <div className="col-span-3 md:col-span-1 md:row-start-2" />
             )}
         <div className="md:row-start-1 flex items-center">
-          <img className="w-15 md:w-22 h-fit" src={source} alt="" />
-
+          <img
+            className="w-15 md:w-22 h-fit"
+            src={organization.image_url}
+            alt={`Logo ${organization.title}`}
+          />
         </div>
 
         <div className="col-span-2 flex justify-center items-end md:row-start-3">
@@ -62,9 +67,7 @@ function MainContent({ id, description, inscription, source }: Props) {
           >
             Detalhes
           </button>
-
         </div>
-
       </div>
     </div>
   );

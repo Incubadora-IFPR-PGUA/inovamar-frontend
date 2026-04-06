@@ -22,7 +22,15 @@ function Calls() {
 
       <div className="flex flex-col gap-4 justify-center items-center mt-10">
         {calls.map(call => (
-          <CallCard key={call.id} id={call.id} initial_funding={call.initial_funding} title={call.title} description={call.description} inscription={call.inscription} source={call.source} />
+          <CallCard
+            key={call.id}
+            id={call.id}
+            initial_funding={call.initial_funding}
+            title={call.title}
+            description={call.description}
+            inscription={call.inscription}
+            organization={call.organization}
+          />
         ))}
       </div>
 

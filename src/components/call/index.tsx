@@ -27,7 +27,7 @@ function CallContent({ call }: CallContentProps) {
           {call.inscription && (
             <InfoItem label="Prazo de inscrição" value={call.inscription} />
           )}
-          <InfoItem label="Organização proponente" value={call.source} />
+          <InfoItem label="Organização proponente" value={call.organization.title} />
         </div>
       </Section>
 
