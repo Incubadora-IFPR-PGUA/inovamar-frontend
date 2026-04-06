@@ -1,3 +1,5 @@
+import type { Organization } from "../../types/call";
+
 import Header from "./header";
 import MainContent from "./main-content";
 
@@ -7,10 +9,10 @@ type Props = {
   title: string;
   description: string;
   inscription?: string;
-  source: string;
+  organization: Organization;
 };
 
-function CallCard({ id, initial_funding, title, description, inscription, source }: Props) {
+function CallCard({ id, initial_funding, title, description, inscription, organization }: Props) {
   return (
     <div className="
         bg-white
@@ -23,7 +25,12 @@ function CallCard({ id, initial_funding, title, description, inscription, source
         "
     >
       <Header initial_funding={initial_funding} title={title} />
-      <MainContent id={id} description={description} inscription={inscription ?? ""} source={source} />
+      <MainContent
+        id={id}
+        description={description}
+        inscription={inscription ?? ""}
+        organization={organization}
+      />
     </div>
   );
 }
